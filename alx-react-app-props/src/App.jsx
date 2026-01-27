@@ -3,8 +3,10 @@
  import MainContent from './components/MainContent.jsx'
  import Footer from './components/Footer.jsx'
  import UserProfile from './components/UserProfile.jsx'
- import UserContext from './UserContext.js'
- 
+
+import React from "react";
+import ProfilePage from './components/ProfilePage';
+import UserContext from './UserContext.js';
 
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
@@ -13,6 +15,8 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0) 
+
+  const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
 
   return (
     <>
@@ -24,9 +28,8 @@ function App() {
       <Footer />
       </div>
 
-      <div>
-        <UserContext.Provider value={userData}></UserContext.Provider>
-      </div>
+       <UserContext.Provider value={userData}><ProfilePage /></UserContext.Provider>
+
       <div>
         <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
       </div>
