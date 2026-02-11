@@ -7,7 +7,7 @@ function RecipeDetail() {
   const [recipe, setRecipe] = useState(null)
 
   useEffect(() => {
-    const foundRecipe = recipesData.find(
+    const selectedRecipe = recipesData.find(
       (item) => item.id === Number(id)
     )
     setRecipe(selectedRecipe)
@@ -55,7 +55,7 @@ function RecipeDetail() {
               Ingredients
             </h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
-              {recipe.ingredients.map((ingredient, index) => (
+              {recipe.ingredients?.map((ingredient, index) => (
                 <li key={index}>{ingredient}</li>
               ))}
             </ul>
