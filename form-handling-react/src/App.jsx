@@ -1,17 +1,11 @@
-import { useState } from 'react'
-import RegistrationForm from './components/RegistrationForm.jsx'
-import FormikForm from './components/FormikForm.jsx'
-
-import './App.css'
+import RegistrationForm from "./components/RegistrationForm";
 
 function App() {
-
   return (
     <div>
-    <RegistrationForm />
-    <FormikForm />
+      <RegistrationForm />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
