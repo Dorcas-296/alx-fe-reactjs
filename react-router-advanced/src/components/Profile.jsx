@@ -1,5 +1,7 @@
 import React from 'react'
-import { Outlet, Link } from "react-router-dom"
+import {Routes, Route, Link } from "react-router-dom"
+import ProfileDetails from "./components/ProfileDetails.jsx";
+import ProfileSettings from "./components/ProfileSettings.jsx";
 
 function Profile() {
   return (
@@ -9,9 +11,13 @@ function Profile() {
         <Link to="details">Profile Details</Link>
         <Link to="settings">Profile Settings</Link>
       </nav>
-      <Outlet />
+      
+      <Route>
+        <Route path='details' element={<ProfileDetails />} />
+        <Route path='settings' element={<ProfileSettings />} />
+      </Route>
     </div>
   );
 }
 
-export default Profile
+export default Profile;
