@@ -28,7 +28,7 @@ import Login from "./components/Login.jsx";
             }
           />   
 
-        <Route path='/blog/:postId' element={<BlogPost />} />
+        <Route path='/blog/:id' element={<BlogPost />} />
         <Route path='/login' element={<Login />} />
       </Routes>
     </Router>
