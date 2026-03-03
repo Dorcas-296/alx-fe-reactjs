@@ -4,13 +4,8 @@ import Home from "./components/Home.jsx";
 import Profile from "./components/Profile.jsx";
 import BlogPost from "./components/BlogPost.jsx";
 import Login from "./components/Login.jsx";
+import ProtectedRoute from './components/ProtectedRoute.jsx';
 
-
-  const profileAuth = { isAuthenticated: false };
-
-  function protectedRoute({ children }) {
-     return profileAuth.isAuthenticated ? children : <Navigate to="/login" />;
-  }
 
   function App() {
 
@@ -22,9 +17,9 @@ import Login from "./components/Login.jsx";
         <Route 
           path="/profile/*"
             element={
-              <protectedRoute>
+              <ProtectedRoute>
                 <Profile />
-              </protectedRoute>
+              </ProtectedRoute>
             }
           />   
 
@@ -35,4 +30,4 @@ import Login from "./components/Login.jsx";
   );
 }
 
-export default App
+export default App;
