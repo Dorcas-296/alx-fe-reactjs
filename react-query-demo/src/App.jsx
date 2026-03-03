@@ -1,19 +1,18 @@
-import { useState } from "react";
+import React from "react";
 import PostsComponent from "./components/PostsComponent";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+  const queryClient = new QueryClient();
 
 function App() {
-  const [showPosts, setShowPosts] = useState(false);
-
-  return (
-    <div style={{ padding: "20px" }}>
-      <h1>React Query Caching Demo</h1>
-
-      <button onClick={() => setShowPosts(!showPosts)}>
-        {showPosts ? "Hide Posts" : "Show Posts"}
-      </button>
-
-      {showPosts && <PostsComponent />}
-    </div>
+  
+ return (
+    <QueryClientProvider client={queryClient}>
+      <div>
+        <h1>React Query DOM Demo</h1>
+        <PostsComponent />
+      </div>
+    </QueryClientProvider>
   );
 }
 
