@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import AddTodoForm from "./AddTodoForm";
 
 function TodoList() {
   const [todos, setTodos] = useState([
@@ -8,19 +7,28 @@ function TodoList() {
     { id: 3, text: "Build Todo App", completed: false },
   ]);
 
-  const addTodo = (text) => {
+  const [input, setInput] = useState("");
+
+  const addTodo = (e) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+
     const newTodo = {
       id: Date.now(),
-      text,
+      text: input,
       completed: false,
     };
+
     setTodos([...todos, newTodo]);
+    setInput("");
   };
 
   const toggleTodo = (id) => {
     setTodos(
       todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+        todo.id === id
+          ? { ...todo, completed: !todo.completed }
+          : todo
       )
     );
   };
@@ -32,7 +40,16 @@ function TodoList() {
   return (
     <div>
       <h1>Todo List</h1>
-      <AddTodoForm addTodo={addTodo} />
+
+      <form onSubmit={addTodo}>
+        <input
+          type="text"
+          placeholder="Add new todo"   
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+        <button type="submit">Add</button>   
+      </form>
 
       <ul>
         {todos.map((todo) => (
@@ -46,7 +63,10 @@ function TodoList() {
             >
               {todo.text}
             </span>
-            <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+
+            <button onClick={() => deleteTodo(todo.id)}>
+              Delete
+            </button>
           </li>
         ))}
       </ul>
