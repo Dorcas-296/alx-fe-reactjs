@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function TodoList() {
+const TodoList = () => {
   const [todos, setTodos] = useState([
     { id: 1, text: "Learn React", completed: false },
     { id: 2, text: "Write Tests", completed: false },
@@ -9,17 +9,9 @@ function TodoList() {
 
   const [input, setInput] = useState("");
 
-  const addTodo = (e) => {
-    e.preventDefault();
-    if (!input.trim()) return;
-
-    const newTodo = {
-      id: Date.now(),
-      text: input,
-      completed: false,
-    };
-
-    setTodos([...todos, newTodo]);
+  const addTodo = () => {
+    if (input.trim() === "") return;
+    setTodos([...todos, { id: Date.now(), text: input, completed: false }]);
     setInput("");
   };
 
@@ -41,15 +33,12 @@ function TodoList() {
     <div>
       <h1>Todo List</h1>
 
-      <form onSubmit={addTodo}>
-        <input
-          type="text"
-          placeholder="Add new todo"   
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
-        <button type="submit">Add</button>   
-      </form>
+      <input
+        placeholder="Add new todo"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
+      <button onClick={addTodo}>Add</button>
 
       <ul>
         {todos.map((todo) => (
@@ -63,7 +52,6 @@ function TodoList() {
             >
               {todo.text}
             </span>
-
             <button onClick={() => deleteTodo(todo.id)}>
               Delete
             </button>
@@ -72,6 +60,6 @@ function TodoList() {
       </ul>
     </div>
   );
-}
+};
 
 export default TodoList;
